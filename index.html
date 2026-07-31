@@ -29,99 +29,141 @@
     position: relative;
   }
 
-  /* Stars Background Animation */
-  .bg-stars {
+  /* --- 1. AESTHETIC PINK NIGHT SKY BACKGROUND --- */
+  .bg-nebula {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     z-index: 0;
-    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    background: radial-gradient(circle at center, #2d1b36 0%, #1a0f21 40%, #090a0f 100%);
     overflow: hidden;
   }
 
+  .bg-nebula::after {
+    content: '';
+    position: absolute;
+    width: 200%; height: 200%;
+    top: -50%; left: -50%;
+    background-image: radial-gradient(circle at 30% 50%, rgba(255, 182, 193, 0.18) 0%, transparent 40%),
+                      radial-gradient(circle at 70% 30%, rgba(147, 112, 219, 0.12) 0%, transparent 40%);
+    filter: blur(60px);
+    animation: nebulaMove 20s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes nebulaMove {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-5%, -5%) rotate(5deg); }
+  }
+
+  /* Bintang kerlap-kerlip */
   .star {
     position: absolute;
     background: white;
     border-radius: 50%;
     animation: twinkle linear infinite;
+    z-index: 1;
   }
 
   @keyframes twinkle {
-    0%, 100% { opacity: 0.2; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.2); }
+    0%, 100% { opacity: 0.1; transform: scale(0.8); }
+    50% { opacity: 0.9; transform: scale(1.3); }
   }
 
-  /* Card Glassmorphism Glow */
+  /* --- 2. CARD GLASSMORPHISM GLOSSY --- */
   .card {
     position: relative;
     z-index: 10;
-    background: rgba(255, 255, 255, 0.07);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 24px;
-    padding: 35px 25px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 182, 193, 0.2);
+    border-radius: 30px;
+    padding: 40px 25px;
     width: 100%;
-    max-width: 420px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 183, 3, 0.15);
-    animation: fadeIn 0.8s ease-in-out;
+    max-width: 400px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 182, 193, 0.2);
+    animation: cardEntry 1s ease-out;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  @keyframes cardEntry {
+    from { opacity: 0; transform: translateY(40px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  h1 { font-size: 3.5rem; margin-bottom: 5px; animation: pulse 2s infinite; }
-  .title-sub { font-family: 'Sacramento', cursive; font-size: 2.2rem; color: #ffb703; margin-bottom: 5px; }
-  h2 { font-size: 1.4rem; color: #f1f1f1; letter-spacing: 1px; margin-bottom: 12px; }
-  p { font-size: 0.95rem; line-height: 1.7; color: #d1d5db; margin-bottom: 15px; }
+  h1 { font-size: 3.5rem; margin-bottom: 5px; animation: pulseEmoji 2.5s infinite; }
+  .title-sub { font-family: 'Sacramento', cursive; font-size: 2.5rem; color: #ffb6c1; margin-bottom: 5px; text-shadow: 0 0 10px rgba(255, 182, 193, 0.6); }
+  h2 { font-size: 1.3rem; color: #f1f1f1; letter-spacing: 1.5px; margin-bottom: 15px; }
+  p { font-size: 0.95rem; line-height: 1.8; color: #d1d5db; margin-bottom: 20px; }
 
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); }
+  @keyframes pulseEmoji {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.1); opacity: 1; }
   }
 
   .menu {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
     margin-top: 25px;
   }
 
+  /* Tombol Aesthetic Glow */
   button {
-    background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+    background: linear-gradient(135deg, #ffb6c1 0%, #ff69b4 100%);
     border: none;
-    color: #000000;
+    color: #ffffff;
     font-weight: 700;
-    padding: 14px 20px;
-    border-radius: 30px;
+    padding: 15px 20px;
+    border-radius: 35px;
     cursor: pointer;
     font-size: 1rem;
-    box-shadow: 0 4px 15px rgba(251, 133, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
   }
 
+  button::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.5s;
+  }
+
+  button:hover::before { left: 100%; }
+
   button:hover, button:active {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(251, 133, 0, 0.6);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.7);
+  }
+
+  /* Tombol Khusus Love Bomb */
+  .btn-love-bomb {
+    background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: white;
   }
 
   .btn-back {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
     box-shadow: none;
-    margin-top: 20px;
+    margin-top: 25px;
   }
 
   .page {
     display: none;
-    animation: fadeIn 0.5s ease-in-out;
+    animation: pageFade 0.6s ease-in-out;
   }
 
-  /* Gallery Styling */
+  @keyframes pageFade {
+    from { opacity: 0; transform: translateX(10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* --- 3. GALERI & MODAL --- */
   .gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -132,19 +174,18 @@
   .gallery-item {
     position: relative;
     overflow: hidden;
-    border-radius: 16px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border-radius: 18px;
+    border: 2px solid rgba(255, 182, 193, 0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
     transition: transform 0.3s ease;
+    cursor: pointer;
   }
 
-  .gallery-item:active {
-    transform: scale(0.95);
-  }
+  .gallery-item:active { transform: scale(0.96); }
 
   .gallery img {
     width: 100%;
-    height: 140px;
+    height: 130px;
     object-fit: cover;
     display: block;
   }
@@ -155,37 +196,43 @@
     position: fixed;
     z-index: 100;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.93);
     justify-content: center;
     align-items: center;
     padding: 20px;
+    backdrop-filter: blur(10px);
   }
 
   .modal img {
-    max-width: 90%;
-    max-height: 80%;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    max-width: 95%;
+    max-height: 85%;
+    border-radius: 20px;
+    border: 3px solid #ffb6c1;
+    box-shadow: 0 0 30px rgba(255, 182, 193, 0.5);
+    animation: zoomIn 0.4s ease;
   }
+
+  @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 </style>
 </head>
 
 <body>
 
-<div class="bg-stars" id="stars"></div>
+<div class="bg-nebula" id="nebula"></div>
 
 <div class="card">
 
   <div id="home">
-    <h1>🌙</h1>
+    <h1>💖</h1>
     <h2>HAPPY GIRLFRIEND DAY</h2>
     <div class="title-sub">Sayang 🤍</div>
-    <p>Ada tiga bagian langit yang menyimpan sesuatu khusus untukmu...</p>
+    <p>Ada tiga bagian langit pink yang menyimpan kejutan khusus untukmu...</p>
 
     <div class="menu">
       <button onclick="openPage('star')">⭐ Bintang</button>
       <button onclick="openPage('moon')">🌙 Bulan</button>
       <button onclick="openPage('sky')">☁️ Langit</button>
+      <button class="btn-love-bomb" onclick="triggerLoveBomb()">💖 LOVE BOMB 💖</button>
     </div>
   </div>
 
@@ -201,7 +248,7 @@
 
   <div id="moon" class="page">
     <h2>🌙 Kenangan Kita</h2>
-    <p style="font-size: 0.8rem; opacity: 0.8;">(Klik foto untuk memperbesar)</p>
+    <p style="font-size: 0.8rem; opacity: 0.7;">(Klik foto untuk memperbesar)</p>
     <div class="gallery">
       <div class="gallery-item" onclick="zoomImage('1.png')"><img src="1.png" alt="Foto 1"></div>
       <div class="gallery-item" onclick="zoomImage('2.png')"><img src="2.png" alt="Foto 2"></div>
@@ -214,10 +261,11 @@
 
   <div id="sky" class="page">
     <h2>☁️ Surat Untukmu</h2>
-    <p style="text-align: justify; font-size: 0.9rem;">
+    <p style="text-align: justify; font-size: 0.9rem; max-height: 250px; overflow-y: auto; padding-right: 5px;">
       Happy Girlfriend Day, Sayang. 🤍<br><br>
       Kalau dipikir-pikir, lucu juga ya. Dari sekian banyak orang di dunia, ternyata kita bisa bertemu karena sebuah ketidaksengajaan.<br><br>
       Terima kasih sudah berbagi tawa, cerita, dan semua kenangan yang kita buat.<br><br>
+      Aku benar-benar bersyukur bisa mengenal kamu.<br><br>
       Kalau suatu hari nanti kamu bertanya apa hadiah terbaik yang pernah aku dapatkan... Jawabannya tetap sama.<br><br>
       Saat kamu memutuskan menjadi bagian dari hidupku. 🤍
     </p>
@@ -231,9 +279,9 @@
 </div>
 
 <script>
-  // Buat Bintang-bintang otomatis
-  const starsContainer = document.getElementById('stars');
-  for (let i = 0; i < 60; i++) {
+  // 1. Buat Bintang Otomatis di Background
+  const nebula = document.getElementById('nebula');
+  for (let i = 0; i < 70; i++) {
     const star = document.createElement('div');
     star.className = 'star';
     star.style.width = `${Math.random() * 3 + 1}px`;
@@ -241,33 +289,28 @@
     star.style.top = `${Math.random() * 100}%`;
     star.style.left = `${Math.random() * 100}%`;
     star.style.animationDuration = `${Math.random() * 3 + 2}s`;
-    starsContainer.appendChild(star);
+    nebula.appendChild(star);
   }
 
+  // 2. Navigasi Halaman & Efek Confetti Pink
   function openPage(pageId) {
-    document.getElementById('home').style.display = 'none';
-    document.getElementById('star').style.display = 'none';
-    document.getElementById('moon').style.display = 'none';
-    document.getElementById('sky').style.display = 'none';
-
+    document.querySelectorAll('.page, #home').forEach(p => p.style.display = 'none');
     document.getElementById(pageId).style.display = 'block';
 
-    // Efek Kembang Api/Confetti saat buka halaman
     confetti({
-      particleCount: 50,
-      spread: 60,
+      particleCount: 40,
+      spread: 50,
+      colors: ['#ffb6c1', '#ff69b4', '#ffffff'],
       origin: { y: 0.7 }
     });
   }
 
   function backHome() {
-    document.getElementById('star').style.display = 'none';
-    document.getElementById('moon').style.display = 'none';
-    document.getElementById('sky').style.display = 'none';
-
+    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
     document.getElementById('home').style.display = 'block';
   }
 
+  // 3. Galeri Zoom
   function zoomImage(src) {
     document.getElementById('imageModal').style.display = 'flex';
     document.getElementById('modalImg').src = src;
@@ -275,6 +318,32 @@
 
   function closeZoom() {
     document.getElementById('imageModal').style.display = 'none';
+  }
+
+  // 4. ANIMASI LOVE BOMB EMOJI HATI
+  function triggerLoveBomb() {
+    // Ledakan utama
+    confetti({
+      particleCount: 150,
+      spread: 100,
+      velocity: 40,
+      colors: ['#ff1493', '#ff69b4', '#ffb6c1', '#ffffff'],
+      shapes: ['heart'],
+      origin: { y: 0.6 }
+    });
+
+    // Susulan
+    setTimeout(() => {
+      confetti({
+        particleCount: 60,
+        spread: 120,
+        velocity: 15,
+        gravity: 0.5,
+        colors: ['#ff69b4', '#ffb6c1'],
+        shapes: ['heart'],
+        origin: { y: 0.8 }
+      });
+    }, 300);
   }
 </script>
 
