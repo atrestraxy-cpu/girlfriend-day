@@ -3,212 +3,347 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Girlfriend Day ❤️</title>
+<title>Presentation Sweet Bear ✨</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Sacramento&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
 
   body {
-    background: #120c1f;
+    background: #0b0712;
     color: #ffffff;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px;
-    text-align: center;
-    position: relative;
+    padding: 20px;
     overflow-x: hidden;
+    position: relative;
   }
 
-  /* Background Warm Light */
-  body::before {
-    content: '';
+  /* --- 1. BG LANGIT MALAM UNGU-PINK --- */
+  .bg-sky {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at center, rgba(255, 182, 193, 0.15) 0%, rgba(30, 17, 34, 0.95) 70%);
     z-index: 0;
+    background: radial-gradient(circle at 50% 30%, #3d1b46 0%, #1c0d2b 50%, #0b0712 100%);
   }
 
-  .wrapper {
+  .bg-sky::after {
+    content: '';
+    position: absolute;
+    width: 150%; height: 150%;
+    top: -25%; left: -25%;
+    background: radial-gradient(circle at 70% 20%, rgba(255, 182, 193, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(186, 85, 211, 0.2) 0%, transparent 40%);
+    filter: blur(50px);
+    animation: floatingNebula 15s ease-in-out infinite alternate;
+  }
+
+  @keyframes floatingNebula {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.1) translate(-2%, 2%); }
+  }
+
+  /* --- 2. LAMPU MALAM GANTUNG (STRING LIGHTS) --- */
+  .light-string {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    display: flex;
+    justify-content: space-around;
+    z-index: 2;
+    padding-top: 5px;
+  }
+
+  .bulb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 15px #fff;
+    animation: glowBulb 2s infinite alternate ease-in-out;
+  }
+
+  .bulb:nth-child(2n) { background: #ffb6c1; box-shadow: 0 0 15px #ffb6c1; animation-delay: 0.5s; }
+  .bulb:nth-child(3n) { background: #ffd700; box-shadow: 0 0 15px #ffd700; animation-delay: 1s; }
+  .bulb:nth-child(4n) { background: #e6e6fa; box-shadow: 0 0 15px #e6e6fa; animation-delay: 1.5s; }
+
+  @keyframes glowBulb {
+    0% { opacity: 0.3; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* --- 3. PRESENTATION CARD SLIDE --- */
+  .pres-card {
     position: relative;
     z-index: 10;
-    width: 100%;
-    max-width: 400px;
-    background: rgba(35, 20, 48, 0.75);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(30, 18, 42, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 2px solid rgba(255, 182, 193, 0.3);
-    border-radius: 28px;
-    padding: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 25px rgba(255, 182, 193, 0.2);
+    border-radius: 30px;
+    padding: 35px 25px 25px 25px;
+    width: 100%;
+    max-width: 420px;
+    min-height: 480px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.7), 0 0 30px rgba(255, 182, 193, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
   }
 
-  /* GAMBAR UTAMA CUTE AESTHETIC */
-  .hero-banner {
-    width: 100%;
-    border-radius: 20px;
-    border: 2px solid rgba(255, 182, 193, 0.4);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-    margin-bottom: 15px;
+  .pink-bear-corner {
+    position: absolute;
+    top: -30px;
+    right: 15px;
+    font-size: 3.2rem;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+    animation: bearBounce 3s ease-in-out infinite;
+  }
+
+  @keyframes bearBounce {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(5deg); }
+  }
+
+  .slides-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide {
+    display: none;
+    animation: slideAnimation 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .slide.active {
     display: block;
   }
 
-  .title-sub {
-    font-family: 'Sacramento', cursive;
-    font-size: 2.2rem;
+  @keyframes slideAnimation {
+    from { opacity: 0; transform: scale(0.92) translateY(15px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .slide-num {
+    font-size: 0.8rem;
     color: #ffb6c1;
-    margin-top: 5px;
-    text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
   }
 
-  p.desc {
-    font-size: 0.85rem;
-    color: #d1d5db;
-    margin-bottom: 20px;
+  h2 {
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(255, 182, 193, 0.4);
   }
 
-  /* MENU BUTTONS */
-  .menu {
+  .script-font {
+    font-family: 'Sacramento', cursive;
+    font-size: 2.3rem;
+    color: #ffb6c1;
+  }
+
+  p {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: #e0d6e5;
+  }
+
+  .slide-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .slide-gallery img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 2px solid #ffb6c1;
+  }
+
+  /* --- 4. NAVIGATION CONTROLS --- */
+  .controls {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 182, 193, 0.2);
   }
 
-  .btn-card {
+  .btn-nav {
     background: linear-gradient(135deg, #ff9eb5 0%, #ff6fa8 100%);
     border: none;
     color: white;
     font-weight: 700;
-    padding: 14px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    box-shadow: 0 4px 15px rgba(255, 111, 168, 0.4);
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .btn-card:active {
-    transform: scale(0.97);
-  }
-
-  .btn-back {
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-    border: none;
     padding: 10px 20px;
     border-radius: 20px;
-    margin-top: 15px;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
+    box-shadow: 0 4px 12px rgba(255, 111, 168, 0.4);
+    transition: transform 0.2s, opacity 0.2s;
   }
 
-  .page {
-    display: none;
-    animation: fadeIn 0.4s ease;
+  .btn-nav:active { transform: scale(0.95); }
+  .btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .dots {
+    display: flex;
+    gap: 6px;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s;
   }
 
-  /* GALERI */
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin: 15px 0;
-  }
-
-  .gallery img {
-    width: 100%;
-    height: 110px;
-    object-fit: cover;
-    border-radius: 14px;
-    border: 2px solid #ffb6c1;
+  .dot.active {
+    width: 20px;
+    border-radius: 10px;
+    background: #ffb6c1;
+    box-shadow: 0 0 8px #ffb6c1;
   }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="bg-sky"></div>
 
-  <div id="home">
-    <img src="1000115533.png" alt="Happy Girlfriend Day" class="hero-banner" onerror="this.src='https://raw.githubusercontent.com/atrestraxy-cpu/girlfriend-day/main/1000115533.png'">
-    
-    <div class="title-sub">Untuk Kamu, Sayang 🤍</div>
-    <p class="desc">Pilih bagian yang ingin kamu buka di bawah ini...</p>
+<div class="light-string">
+  <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+  <div class="bulb"></div><div class="bulb"></div><div class="bulb"></div>
+  <div class="bulb"></div><div class="bulb"></div>
+</div>
 
-    <div class="menu">
-      <button class="btn-card" onclick="openPage('star')">⭐ Buka Kejutan</button>
-      <button class="btn-card" onclick="openPage('moon')">🌙 Lihat Kenangan</button>
-      <button class="btn-card" onclick="openPage('sky')">☁️ Baca Surat Cinta</button>
+<div class="pres-card">
+  
+  <div class="pink-bear-corner">🧸🌸</div>
+
+  <div class="slides-container">
+
+    <div class="slide active">
+      <div class="slide-num">Slide 01 / 04</div>
+      <h2>Halooo <span class="script-font">Sayang 🤍</span></h2>
+      <p style="margin-top: 15px;">
+        Selamat datang di presentasi spesial malam ini! 💡✨<br><br>
+        Geser ke slide selanjutnya ya buat baca pesan manis dari aku...
+      </p>
     </div>
-  </div>
 
-  <div id="star" class="page">
-    <h2 style="color: #ffb6c1; margin-bottom: 10px;">⭐ Untuk Kamu ⭐</h2>
-    <p style="line-height: 1.7; font-size: 0.9rem;">
-      Aku bersyukur banget ketemu kamu.<br><br>
-      Terima kasih sudah hadir & mau bertahan sejauh ini.<br><br>
-      Aku selalu bangga sama kamu. Jangan lupa makan & jaga kesehatan ya!<br><br>
-      Aku sayang kamu 🤍
-    </p>
-    <button class="btn-back" onclick="backHome()">⬅️ Kembali</button>
-  </div>
-
-  <div id="moon" class="page">
-    <h2 style="color: #ffb6c1; margin-bottom: 10px;">🌙 Kenangan Kita</h2>
-    <div class="gallery">
-      <img src="1.png" alt="Foto 1">
-      <img src="2.png" alt="Foto 2">
-      <img src="3.png" alt="Foto 3">
-      <img src="4.png" alt="Foto 4">
+    <div class="slide">
+      <div class="slide-num">Slide 02 / 04</div>
+      <h2>⭐ Ucapan Khusus ⭐</h2>
+      <p>
+        ✨HAPPY GIRLFRIEND DAH, SAYANG 💕
+        Terima kasih sudah selalu ada dan bikin hari-hariku jadi lebih berwarna.<br><br>
+        Kehadiran kamu itu ibarat lampu penerang di langit malam yang gelap. Selalu hangat dan bikin nyaman! 🌸
+        Kalau dipikir-pikir, lucu juga ya. Dari sekian banyak orang di dunia, ternyata kita bisa bertemu dengan ketidak sengajaan dan bisa seperti ini sekarang. 
+        Terima kasih sudah berbagi tawa, cerita, dan bahkan hal-hal kecil yang mungkin kelihatannya sepele, tapi buatku semuanya punya arti.
+        Mungkin aku bukan orang yang paling pandai mengungkapkan perasaan. Tapi kalau ada satu hal yang ingin kamu tahu, itu adalah aku benar-benar bersyukur bisa kenal kamu. 
+        Terima kasih sudah menjadi seseorang yang membuat hari-hariku terasa lebih berwarna dan berubah. 
+        Dan kalau suatu hari nanti kamu bertanya apa hadiah terbaik yang pernah aku dapatkan...
+        Jawabannya tetap sama.
+        Itu adalah saat kamu memutuskan untuk menjadi bagian dari hidupku. 💗
+      </p>
     </div>
-    <p style="font-size: 0.85rem; color: #d1d5db;">Terima kasih sudah membuat banyak kenangan indah bersamaku.</p>
-    <button class="btn-back" onclick="backHome()">⬅️ Kembali</button>
+
+    <div class="slide">
+      <div class="slide-num">Slide 03 / 04</div>
+      <h2>🌙 Momen Favorit</h2>
+      <div class="slide-gallery">
+        <img src="1.png" alt="Foto 1">
+        <img src="2.png" alt="Foto 2">
+        <img src="3.png" alt="Foto 3">
+        <img src="4.png" alt="Foto 4">
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="slide-num">Slide 04 / 04</div>
+      <h2>☁️ Penutup</h2>
+      <p>
+        Semoga kamu suka sama presentasi kecil ini ya.<br><br>
+        <b style="color: #ffb6c1;">I Love You So Much! 💖</b>
+      </p>
+      <button class="btn-nav" style="margin-top: 15px; width: 100%;" onclick="triggerLove()">💖 Ledakkan Cinta 💖</button>
+    </div>
+
   </div>
 
-  <div id="sky" class="page">
-    <h2 style="color: #ffb6c1; margin-bottom: 10px;">☁️ Surat Untukmu</h2>
-    <p style="text-align: justify; font-size: 0.88rem; line-height: 1.7; max-height: 250px; overflow-y: auto; padding-right: 5px;">
-      Happy Girlfriend Day, Sayang. 🤍<br><br>
-      Kalau dipikir-pikir, lucu juga ya. Dari sekian banyak orang di dunia, ternyata kita bisa bertemu karena sebuah ketidaksengajaan.<br><br>
-      Terima kasih sudah berbagi tawa, cerita, dan semua kenangan yang kita buat.<br><br>
-      Kalau suatu hari nanti kamu bertanya apa hadiah terbaik yang pernah aku dapatkan... Jawabannya tetap sama.<br><br>
-      Saat kamu memutuskan menjadi bagian dari hidupku. 🤍
-    </p>
-    <button class="btn-back" onclick="backHome()">⬅️ Kembali</button>
+  <div class="controls">
+    <button class="btn-nav" id="prevBtn" onclick="changeSlide(-1)" disabled>⬅️ Prev</button>
+    <div class="dots" id="dotsContainer"></div>
+    <button class="btn-nav" id="nextBtn" onclick="changeSlide(1)">Next ➡️</button>
   </div>
 
 </div>
 
 <script>
-  function openPage(id) {
-    document.getElementById('home').style.display = 'none';
-    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('dotsContainer');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  slides.forEach((_, idx) => {
+    const dot = document.createElement('div');
+    dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll('.dot');
+
+  function updateSlide() {
+    slides.forEach((s, i) => {
+      s.classList.toggle('active', i === currentSlide);
+      dots[i].classList.toggle('active', i === currentSlide);
+    });
+
+    prevBtn.disabled = currentSlide === 0;
+    nextBtn.disabled = currentSlide === slides.length - 1;
+  }
+
+  function changeSlide(direction) {
+    currentSlide += direction;
+    updateSlide();
 
     confetti({
-      particleCount: 50,
-      spread: 60,
-      colors: ['#ffb6c1', '#ff758c', '#ffffff'],
+      particleCount: 25,
+      spread: 50,
+      colors: ['#ffb6c1', '#ffd700', '#ffffff'],
       origin: { y: 0.7 }
     });
   }
 
-  function backHome() {
-    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-    document.getElementById('home').style.display = 'block';
+  // Fungsi Efek Ledakan Bentuk Love (Love Bomb)
+  function triggerLove() {
+    confetti({
+      particleCount: 120,
+      spread: 90,
+      colors: ['#ff1493', '#ff69b4', '#ffb6c1', '#ffffff'],
+      shapes: ['heart'],
+      origin: { y: 0.6 }
+    });
   }
 </script>
 
