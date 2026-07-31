@@ -2,22 +2,17 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Girlfriend Day ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Happy Girlfriend Day, Sayang ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
   body {
-    background: #090a0f;
+    background: #0d0914; /* Fallback */
     color: #ffffff;
     min-height: 100vh;
     display: flex;
@@ -29,25 +24,27 @@
     position: relative;
   }
 
-  /* --- 1. AESTHETIC PINK NIGHT SKY BACKGROUND --- */
-  .bg-nebula {
+  /* --- 1. WARM VELVET SUNSET BACKGROUND --- */
+  .bg-warm {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     z-index: 0;
-    background: radial-gradient(circle at center, #2d1b36 0%, #1a0f21 40%, #090a0f 100%);
+    /* Gradient Warna Warm Romantic */
+    background: radial-gradient(circle at center, #3a223f 0%, #1e1122 40%, #0d0914 100%);
     overflow: hidden;
   }
 
-  .bg-nebula::after {
+  /* Nebula Cloud Effect */
+  .bg-warm::after {
     content: '';
     position: absolute;
     width: 200%; height: 200%;
     top: -50%; left: -50%;
-    background-image: radial-gradient(circle at 30% 50%, rgba(255, 182, 193, 0.18) 0%, transparent 40%),
-                      radial-gradient(circle at 70% 30%, rgba(147, 112, 219, 0.12) 0%, transparent 40%);
-    filter: blur(60px);
-    animation: nebulaMove 20s linear infinite;
-    opacity: 0.8;
+    background-image: radial-gradient(circle at 30% 50%, rgba(255, 182, 193, 0.2) 0%, transparent 40%), /* Pink Soft */
+                      radial-gradient(circle at 70% 30%, rgba(255, 215, 0, 0.08) 0%, transparent 40%); /* Gold Soft */
+    filter: blur(80px);
+    animation: nebulaMove 25s linear infinite;
+    opacity: 0.7;
   }
 
   @keyframes nebulaMove {
@@ -56,33 +53,23 @@
   }
 
   /* Bintang kerlap-kerlip */
-  .star {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    animation: twinkle linear infinite;
-    z-index: 1;
-  }
+  .star { position: absolute; background: white; border-radius: 50%; animation: twinkle linear infinite; z-index: 1; }
+  @keyframes twinkle { 0%, 100% { opacity: 0.1; transform: scale(0.8); } 50% { opacity: 0.8; transform: scale(1.1); } }
 
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.1; transform: scale(0.8); }
-    50% { opacity: 0.9; transform: scale(1.3); }
-  }
-
-  /* --- 2. CARD GLASSMORPHISM GLOSSY --- */
+  /* --- 2. CARD GLASSMORPHISM WITH ORNAMENTS --- */
   .card {
     position: relative;
     z-index: 10;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 182, 193, 0.2);
-    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
     padding: 40px 25px;
     width: 100%;
     max-width: 400px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 182, 193, 0.2);
-    animation: cardEntry 1s ease-out;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 182, 193, 0.2);
+    animation: cardEntry 1.2s ease-out;
   }
 
   @keyframes cardEntry {
@@ -90,34 +77,63 @@
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  h1 { font-size: 3.5rem; margin-bottom: 5px; animation: pulseEmoji 2.5s infinite; }
-  .title-sub { font-family: 'Sacramento', cursive; font-size: 2.5rem; color: #ffb6c1; margin-bottom: 5px; text-shadow: 0 0 10px rgba(255, 182, 193, 0.6); }
-  h2 { font-size: 1.3rem; color: #f1f1f1; letter-spacing: 1.5px; margin-bottom: 15px; }
-  p { font-size: 0.95rem; line-height: 1.8; color: #d1d5db; margin-bottom: 20px; }
+  /* Title & Text */
+  h1 { font-size: 3.2rem; margin-bottom: 5px; animation: pulseEmoji 2.5s infinite; }
+  .title-sub { font-family: 'Sacramento', cursive; font-size: 2.3rem; color: #ffb6c1; margin-bottom: 5px; text-shadow: 0 0 12px rgba(255, 182, 193, 0.6); }
+  h2 { font-size: 1.2rem; color: #f1f1f1; letter-spacing: 1.5px; margin-bottom: 12px; }
+  p { font-size: 0.9rem; line-height: 1.8; color: #d1d5db; margin-bottom: 15px; }
 
-  @keyframes pulseEmoji {
-    0%, 100% { transform: scale(1); opacity: 0.9; }
-    50% { transform: scale(1.1); opacity: 1; }
+  @keyframes pulseEmoji { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.08); opacity: 1; } }
+
+  /* --- 3. ORNAMEN DEKORASI IMUT (CSS EMOJI) --- */
+  .decoration {
+    position: absolute;
+    font-size: 2.5rem;
+    z-index: -1; /* Duduk di belakang konten teks */
+    opacity: 0.9;
   }
 
-  .menu {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 25px;
+  /* Beruang di Kiri Atas */
+  .bear-top {
+    top: -20px;
+    left: -20px;
+    animation: bearSway 4s ease-in-out infinite;
   }
 
-  /* Tombol Aesthetic Glow */
+  /* Kelinci di Kanan Bawah */
+  .bunny-bottom {
+    bottom: -15px;
+    right: -15px;
+    font-size: 2rem;
+    animation: bearSway 3.5s ease-in-out infinite reverse;
+  }
+
+  /* Hati kecil di tengah */
+  .heart-decor {
+    bottom: -10px;
+    left: 45%;
+    font-size: 1.5rem;
+    animation: pulseEmoji 3s infinite;
+  }
+
+  @keyframes bearSway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+
+  /* --- 4. BUTTONS --- */
+  .menu { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
+
   button {
-    background: linear-gradient(135deg, #ffb6c1 0%, #ff69b4 100%);
+    background: linear-gradient(135deg, #ff9eb5 0%, #ff6fa8 100%);
     border: none;
     color: #ffffff;
     font-weight: 700;
     padding: 15px 20px;
     border-radius: 35px;
     cursor: pointer;
-    font-size: 1rem;
-    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(255, 111, 168, 0.4);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
@@ -134,16 +150,8 @@
   button:hover::before { left: 100%; }
 
   button:hover, button:active {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.7);
-  }
-
-  /* Tombol Khusus Love Bomb */
-  .btn-love-bomb {
-    background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
-    margin-top: 10px;
-    font-size: 1.1rem;
-    color: white;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 111, 168, 0.7);
   }
 
   .btn-back {
@@ -153,6 +161,7 @@
     margin-top: 25px;
   }
 
+  /* --- 5. PAGES --- */
   .page {
     display: none;
     animation: pageFade 0.6s ease-in-out;
@@ -163,32 +172,11 @@
     to { opacity: 1; transform: translateX(0); }
   }
 
-  /* --- 3. GALERI & MODAL --- */
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin: 20px 0;
-  }
-
-  .gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 18px;
-    border: 2px solid rgba(255, 182, 193, 0.3);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-
+  /* --- 6. GALERI & MODAL --- */
+  .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 20px 0; }
+  .gallery-item { position: relative; overflow: hidden; border-radius: 18px; border: 2px solid rgba(255, 182, 193, 0.3); box-shadow: 0 5px 15px rgba(0,0,0,0.4); transition: transform 0.3s ease; cursor: pointer; }
   .gallery-item:active { transform: scale(0.96); }
-
-  .gallery img {
-    width: 100%;
-    height: 130px;
-    object-fit: cover;
-    display: block;
-  }
+  .gallery img { width: 100%; height: 120px; object-fit: cover; display: block; }
 
   /* Modal Preview Foto */
   .modal {
@@ -204,8 +192,7 @@
   }
 
   .modal img {
-    max-width: 95%;
-    max-height: 85%;
+    max-width: 95%; max-height: 85%;
     border-radius: 20px;
     border: 3px solid #ffb6c1;
     box-shadow: 0 0 30px rgba(255, 182, 193, 0.5);
@@ -218,21 +205,24 @@
 
 <body>
 
-<div class="bg-nebula" id="nebula"></div>
+<div class="bg-warm" id="warmBg"></div>
 
 <div class="card">
 
   <div id="home">
+    <div class="decoration bear-top">🧸</div>
+    <div class="decoration bunny-bottom">🐰</div>
+    <div class="decoration heart-decor">🤍</div>
+
     <h1>💖</h1>
     <h2>HAPPY GIRLFRIEND DAY</h2>
     <div class="title-sub">Sayang 🤍</div>
-    <p>Ada tiga bagian langit pink yang menyimpan kejutan khusus untukmu...</p>
+    <p>Ada tiga bagian langit yang menyimpan kehangatan khusus untukmu...</p>
 
     <div class="menu">
       <button onclick="openPage('star')">⭐ Bintang</button>
       <button onclick="openPage('moon')">🌙 Bulan</button>
       <button onclick="openPage('sky')">☁️ Langit</button>
-      <button class="btn-love-bomb" onclick="triggerLoveBomb()">💖 LOVE BOMB 💖</button>
     </div>
   </div>
 
@@ -261,7 +251,7 @@
 
   <div id="sky" class="page">
     <h2>☁️ Surat Untukmu</h2>
-    <p style="text-align: justify; font-size: 0.9rem; max-height: 250px; overflow-y: auto; padding-right: 5px;">
+    <p style="text-align: justify; font-size: 0.9rem; max-height: 220px; overflow-y: auto; padding-right: 5px;">
       Happy Girlfriend Day, Sayang. 🤍<br><br>
       Kalau dipikir-pikir, lucu juga ya. Dari sekian banyak orang di dunia, ternyata kita bisa bertemu karena sebuah ketidaksengajaan.<br><br>
       Terima kasih sudah berbagi tawa, cerita, dan semua kenangan yang kita buat.<br><br>
@@ -279,9 +269,10 @@
 </div>
 
 <script>
-  // 1. Buat Bintang Otomatis di Background
-  const nebula = document.getElementById('nebula');
-  for (let i = 0; i < 70; i++) {
+  // 1. Buat Bintang & Hati jatuh di Background
+  const warmBg = document.getElementById('warmBg');
+  // Bintang
+  for (let i = 0; i < 50; i++) {
     const star = document.createElement('div');
     star.className = 'star';
     star.style.width = `${Math.random() * 3 + 1}px`;
@@ -289,18 +280,44 @@
     star.style.top = `${Math.random() * 100}%`;
     star.style.left = `${Math.random() * 100}%`;
     star.style.animationDuration = `${Math.random() * 3 + 2}s`;
-    nebula.appendChild(star);
+    warmBg.appendChild(star);
   }
 
-  // 2. Navigasi Halaman & Efek Confetti Pink
+  // Hati Jatuh Pelan
+  const hearts = ['❤️', '🤍', '💖', '🧸'];
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.style.position = 'fixed';
+    heart.style.top = '-50px';
+    heart.style.left = `${Math.random() * 100}%`;
+    heart.style.fontSize = `${Math.random() * 1.2 + 0.8}rem`;
+    heart.style.opacity = '0.6';
+    heart.style.zIndex = '1';
+    heart.style.animation = `heartFall ${Math.random() * 4 + 3}s linear`;
+    warmBg.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }, 900);
+
+  // CSS Animation for falling hearts
+  const style = document.createElement('style');
+  style.innerText = `
+    @keyframes heartFall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+      100% { transform: translateY(110vh) rotate(${Math.random() * 360}deg); opacity: 0; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // 2. Navigasi Halaman & Confetti Warm
   function openPage(pageId) {
     document.querySelectorAll('.page, #home').forEach(p => p.style.display = 'none');
     document.getElementById(pageId).style.display = 'block';
 
     confetti({
-      particleCount: 40,
-      spread: 50,
-      colors: ['#ffb6c1', '#ff69b4', '#ffffff'],
+      particleCount: 50,
+      spread: 60,
+      colors: ['#ffb6c1', '#ffd700', '#ffffff'], /* Pink, Gold, Putih */
       origin: { y: 0.7 }
     });
   }
@@ -318,32 +335,6 @@
 
   function closeZoom() {
     document.getElementById('imageModal').style.display = 'none';
-  }
-
-  // 4. ANIMASI LOVE BOMB EMOJI HATI
-  function triggerLoveBomb() {
-    // Ledakan utama
-    confetti({
-      particleCount: 150,
-      spread: 100,
-      velocity: 40,
-      colors: ['#ff1493', '#ff69b4', '#ffb6c1', '#ffffff'],
-      shapes: ['heart'],
-      origin: { y: 0.6 }
-    });
-
-    // Susulan
-    setTimeout(() => {
-      confetti({
-        particleCount: 60,
-        spread: 120,
-        velocity: 15,
-        gravity: 0.5,
-        colors: ['#ff69b4', '#ffb6c1'],
-        shapes: ['heart'],
-        origin: { y: 0.8 }
-      });
-    }, 300);
   }
 </script>
 
