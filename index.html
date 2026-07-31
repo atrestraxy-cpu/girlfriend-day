@@ -2,260 +2,188 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Happy Girlfriend Day, Sayang ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Girlfriend Day ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Sacramento&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
   body {
-    background: #0d0914; /* Fallback */
+    background: #120c1f;
     color: #ffffff;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 15px;
     text-align: center;
-    overflow-x: hidden;
     position: relative;
+    overflow-x: hidden;
   }
 
-  /* --- 1. WARM VELVET SUNSET BACKGROUND --- */
-  .bg-warm {
+  /* Background Warm Light */
+  body::before {
+    content: '';
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 182, 193, 0.15) 0%, rgba(30, 17, 34, 0.95) 70%);
     z-index: 0;
-    /* Gradient Warna Warm Romantic */
-    background: radial-gradient(circle at center, #3a223f 0%, #1e1122 40%, #0d0914 100%);
-    overflow: hidden;
   }
 
-  /* Nebula Cloud Effect */
-  .bg-warm::after {
-    content: '';
-    position: absolute;
-    width: 200%; height: 200%;
-    top: -50%; left: -50%;
-    background-image: radial-gradient(circle at 30% 50%, rgba(255, 182, 193, 0.2) 0%, transparent 40%), /* Pink Soft */
-                      radial-gradient(circle at 70% 30%, rgba(255, 215, 0, 0.08) 0%, transparent 40%); /* Gold Soft */
-    filter: blur(80px);
-    animation: nebulaMove 25s linear infinite;
-    opacity: 0.7;
-  }
-
-  @keyframes nebulaMove {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    100% { transform: translate(-5%, -5%) rotate(5deg); }
-  }
-
-  /* Bintang kerlap-kerlip */
-  .star { position: absolute; background: white; border-radius: 50%; animation: twinkle linear infinite; z-index: 1; }
-  @keyframes twinkle { 0%, 100% { opacity: 0.1; transform: scale(0.8); } 50% { opacity: 0.8; transform: scale(1.1); } }
-
-  /* --- 2. CARD GLASSMORPHISM WITH ORNAMENTS --- */
-  .card {
+  .wrapper {
     position: relative;
     z-index: 10;
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 28px;
-    padding: 40px 25px;
     width: 100%;
     max-width: 400px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 182, 193, 0.2);
-    animation: cardEntry 1.2s ease-out;
+    background: rgba(35, 20, 48, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 182, 193, 0.3);
+    border-radius: 28px;
+    padding: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 25px rgba(255, 182, 193, 0.2);
   }
 
-  @keyframes cardEntry {
-    from { opacity: 0; transform: translateY(40px) scale(0.9); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+  /* GAMBAR UTAMA CUTE AESTHETIC */
+  .hero-banner {
+    width: 100%;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 182, 193, 0.4);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    margin-bottom: 15px;
+    display: block;
   }
 
-  /* Title & Text */
-  h1 { font-size: 3.2rem; margin-bottom: 5px; animation: pulseEmoji 2.5s infinite; }
-  .title-sub { font-family: 'Sacramento', cursive; font-size: 2.3rem; color: #ffb6c1; margin-bottom: 5px; text-shadow: 0 0 12px rgba(255, 182, 193, 0.6); }
-  h2 { font-size: 1.2rem; color: #f1f1f1; letter-spacing: 1.5px; margin-bottom: 12px; }
-  p { font-size: 0.9rem; line-height: 1.8; color: #d1d5db; margin-bottom: 15px; }
-
-  @keyframes pulseEmoji { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.08); opacity: 1; } }
-
-  /* --- 3. ORNAMEN DEKORASI IMUT (CSS EMOJI) --- */
-  .decoration {
-    position: absolute;
-    font-size: 2.5rem;
-    z-index: -1; /* Duduk di belakang konten teks */
-    opacity: 0.9;
+  .title-sub {
+    font-family: 'Sacramento', cursive;
+    font-size: 2.2rem;
+    color: #ffb6c1;
+    margin-top: 5px;
+    text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
   }
 
-  /* Beruang di Kiri Atas */
-  .bear-top {
-    top: -20px;
-    left: -20px;
-    animation: bearSway 4s ease-in-out infinite;
+  p.desc {
+    font-size: 0.85rem;
+    color: #d1d5db;
+    margin-bottom: 20px;
   }
 
-  /* Kelinci di Kanan Bawah */
-  .bunny-bottom {
-    bottom: -15px;
-    right: -15px;
-    font-size: 2rem;
-    animation: bearSway 3.5s ease-in-out infinite reverse;
+  /* MENU BUTTONS */
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
-  /* Hati kecil di tengah */
-  .heart-decor {
-    bottom: -10px;
-    left: 45%;
-    font-size: 1.5rem;
-    animation: pulseEmoji 3s infinite;
-  }
-
-  @keyframes bearSway {
-    0%, 100% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
-  }
-
-  /* --- 4. BUTTONS --- */
-  .menu { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
-
-  button {
+  .btn-card {
     background: linear-gradient(135deg, #ff9eb5 0%, #ff6fa8 100%);
     border: none;
-    color: #ffffff;
+    color: white;
     font-weight: 700;
-    padding: 15px 20px;
-    border-radius: 35px;
+    padding: 14px 20px;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 0.95rem;
     box-shadow: 0 4px 15px rgba(255, 111, 168, 0.4);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
 
-  button::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: 0.5s;
-  }
-
-  button:hover::before { left: 100%; }
-
-  button:hover, button:active {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(255, 111, 168, 0.7);
+  .btn-card:active {
+    transform: scale(0.97);
   }
 
   .btn-back {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    box-shadow: none;
-    margin-top: 25px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
   }
 
-  /* --- 5. PAGES --- */
   .page {
     display: none;
-    animation: pageFade 0.6s ease-in-out;
+    animation: fadeIn 0.4s ease;
   }
 
-  @keyframes pageFade {
-    from { opacity: 0; transform: translateX(10px); }
-    to { opacity: 1; transform: translateX(0); }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  /* --- 6. GALERI & MODAL --- */
-  .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 20px 0; }
-  .gallery-item { position: relative; overflow: hidden; border-radius: 18px; border: 2px solid rgba(255, 182, 193, 0.3); box-shadow: 0 5px 15px rgba(0,0,0,0.4); transition: transform 0.3s ease; cursor: pointer; }
-  .gallery-item:active { transform: scale(0.96); }
-  .gallery img { width: 100%; height: 120px; object-fit: cover; display: block; }
-
-  /* Modal Preview Foto */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 100;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.93);
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    backdrop-filter: blur(10px);
+  /* GALERI */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 15px 0;
   }
 
-  .modal img {
-    max-width: 95%; max-height: 85%;
-    border-radius: 20px;
-    border: 3px solid #ffb6c1;
-    box-shadow: 0 0 30px rgba(255, 182, 193, 0.5);
-    animation: zoomIn 0.4s ease;
+  .gallery img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 2px solid #ffb6c1;
   }
-
-  @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 </style>
 </head>
 
 <body>
 
-<div class="bg-warm" id="warmBg"></div>
-
-<div class="card">
+<div class="wrapper">
 
   <div id="home">
-    <div class="decoration bear-top">🧸</div>
-    <div class="decoration bunny-bottom">🐰</div>
-    <div class="decoration heart-decor">🤍</div>
-
-    <h1>💖</h1>
-    <h2>HAPPY GIRLFRIEND DAY</h2>
-    <div class="title-sub">Sayang 🤍</div>
-    <p>Ada tiga bagian langit yang menyimpan kehangatan khusus untukmu...</p>
+    <img src="1000115533.png" alt="Happy Girlfriend Day" class="hero-banner" onerror="this.src='https://raw.githubusercontent.com/atrestraxy-cpu/girlfriend-day/main/1000115533.png'">
+    
+    <div class="title-sub">Untuk Kamu, Sayang 🤍</div>
+    <p class="desc">Pilih bagian yang ingin kamu buka di bawah ini...</p>
 
     <div class="menu">
-      <button onclick="openPage('star')">⭐ Bintang</button>
-      <button onclick="openPage('moon')">🌙 Bulan</button>
-      <button onclick="openPage('sky')">☁️ Langit</button>
+      <button class="btn-card" onclick="openPage('star')">⭐ Buka Kejutan</button>
+      <button class="btn-card" onclick="openPage('moon')">🌙 Lihat Kenangan</button>
+      <button class="btn-card" onclick="openPage('sky')">☁️ Baca Surat Cinta</button>
     </div>
   </div>
 
   <div id="star" class="page">
-    <h2>⭐ Untuk Kamu ⭐</h2>
-    <p>Aku bersyukur banget ketemu kamu.</p>
-    <p>Terima kasih sudah hadir & mau bertahan sejauh ini.</p>
-    <p>Aku selalu bangga sama kamu.</p>
-    <p>Jangan lupa makan & jaga kesehatan ya!</p>
-    <p>Aku sayang kamu 🤍</p>
+    <h2 style="color: #ffb6c1; margin-bottom: 10px;">⭐ Untuk Kamu ⭐</h2>
+    <p style="line-height: 1.7; font-size: 0.9rem;">
+      Aku bersyukur banget ketemu kamu.<br><br>
+      Terima kasih sudah hadir & mau bertahan sejauh ini.<br><br>
+      Aku selalu bangga sama kamu. Jangan lupa makan & jaga kesehatan ya!<br><br>
+      Aku sayang kamu 🤍
+    </p>
     <button class="btn-back" onclick="backHome()">⬅️ Kembali</button>
   </div>
 
   <div id="moon" class="page">
-    <h2>🌙 Kenangan Kita</h2>
-    <p style="font-size: 0.8rem; opacity: 0.7;">(Klik foto untuk memperbesar)</p>
+    <h2 style="color: #ffb6c1; margin-bottom: 10px;">🌙 Kenangan Kita</h2>
     <div class="gallery">
-      <div class="gallery-item" onclick="zoomImage('1.png')"><img src="1.png" alt="Foto 1"></div>
-      <div class="gallery-item" onclick="zoomImage('2.png')"><img src="2.png" alt="Foto 2"></div>
-      <div class="gallery-item" onclick="zoomImage('3.png')"><img src="3.png" alt="Foto 3"></div>
-      <div class="gallery-item" onclick="zoomImage('4.png')"><img src="4.png" alt="Foto 4"></div>
+      <img src="1.png" alt="Foto 1">
+      <img src="2.png" alt="Foto 2">
+      <img src="3.png" alt="Foto 3">
+      <img src="4.png" alt="Foto 4">
     </div>
-    <p>Terima kasih sudah membuat banyak kenangan indah bersamaku.</p>
+    <p style="font-size: 0.85rem; color: #d1d5db;">Terima kasih sudah membuat banyak kenangan indah bersamaku.</p>
     <button class="btn-back" onclick="backHome()">⬅️ Kembali</button>
   </div>
 
   <div id="sky" class="page">
-    <h2>☁️ Surat Untukmu</h2>
-    <p style="text-align: justify; font-size: 0.9rem; max-height: 220px; overflow-y: auto; padding-right: 5px;">
+    <h2 style="color: #ffb6c1; margin-bottom: 10px;">☁️ Surat Untukmu</h2>
+    <p style="text-align: justify; font-size: 0.88rem; line-height: 1.7; max-height: 250px; overflow-y: auto; padding-right: 5px;">
       Happy Girlfriend Day, Sayang. 🤍<br><br>
       Kalau dipikir-pikir, lucu juga ya. Dari sekian banyak orang di dunia, ternyata kita bisa bertemu karena sebuah ketidaksengajaan.<br><br>
       Terima kasih sudah berbagi tawa, cerita, dan semua kenangan yang kita buat.<br><br>
-      Aku benar-benar bersyukur bisa mengenal kamu.<br><br>
       Kalau suatu hari nanti kamu bertanya apa hadiah terbaik yang pernah aku dapatkan... Jawabannya tetap sama.<br><br>
       Saat kamu memutuskan menjadi bagian dari hidupku. 🤍
     </p>
@@ -264,60 +192,16 @@
 
 </div>
 
-<div class="modal" id="imageModal" onclick="closeZoom()">
-  <img id="modalImg" src="" alt="Zoomed">
-</div>
-
 <script>
-  // 1. Buat Bintang & Hati jatuh di Background
-  const warmBg = document.getElementById('warmBg');
-  // Bintang
-  for (let i = 0; i < 50; i++) {
-    const star = document.createElement('div');
-    star.className = 'star';
-    star.style.width = `${Math.random() * 3 + 1}px`;
-    star.style.height = star.style.width;
-    star.style.top = `${Math.random() * 100}%`;
-    star.style.left = `${Math.random() * 100}%`;
-    star.style.animationDuration = `${Math.random() * 3 + 2}s`;
-    warmBg.appendChild(star);
-  }
-
-  // Hati Jatuh Pelan
-  const hearts = ['❤️', '🤍', '💖', '🧸'];
-  setInterval(() => {
-    const heart = document.createElement('div');
-    heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-    heart.style.position = 'fixed';
-    heart.style.top = '-50px';
-    heart.style.left = `${Math.random() * 100}%`;
-    heart.style.fontSize = `${Math.random() * 1.2 + 0.8}rem`;
-    heart.style.opacity = '0.6';
-    heart.style.zIndex = '1';
-    heart.style.animation = `heartFall ${Math.random() * 4 + 3}s linear`;
-    warmBg.appendChild(heart);
-    setTimeout(() => heart.remove(), 7000);
-  }, 900);
-
-  // CSS Animation for falling hearts
-  const style = document.createElement('style');
-  style.innerText = `
-    @keyframes heartFall {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
-      100% { transform: translateY(110vh) rotate(${Math.random() * 360}deg); opacity: 0; }
-    }
-  `;
-  document.head.appendChild(style);
-
-  // 2. Navigasi Halaman & Confetti Warm
-  function openPage(pageId) {
-    document.querySelectorAll('.page, #home').forEach(p => p.style.display = 'none');
-    document.getElementById(pageId).style.display = 'block';
+  function openPage(id) {
+    document.getElementById('home').style.display = 'none';
+    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
 
     confetti({
       particleCount: 50,
       spread: 60,
-      colors: ['#ffb6c1', '#ffd700', '#ffffff'], /* Pink, Gold, Putih */
+      colors: ['#ffb6c1', '#ff758c', '#ffffff'],
       origin: { y: 0.7 }
     });
   }
@@ -325,16 +209,6 @@
   function backHome() {
     document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
     document.getElementById('home').style.display = 'block';
-  }
-
-  // 3. Galeri Zoom
-  function zoomImage(src) {
-    document.getElementById('imageModal').style.display = 'flex';
-    document.getElementById('modalImg').src = src;
-  }
-
-  function closeZoom() {
-    document.getElementById('imageModal').style.display = 'none';
   }
 </script>
 
