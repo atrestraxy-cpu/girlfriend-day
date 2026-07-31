@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Girlfriend Day ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
 <style>
   * {
@@ -16,7 +17,7 @@
   }
 
   body {
-    background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+    background: #090a0f;
     color: #ffffff;
     min-height: 100vh;
     display: flex;
@@ -24,110 +25,188 @@
     align-items: center;
     padding: 20px;
     text-align: center;
+    overflow-x: hidden;
+    position: relative;
   }
 
-  .card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 30px 20px;
+  /* Stars Background Animation */
+  .bg-stars {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 450px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    height: 100%;
+    z-index: 0;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    overflow: hidden;
   }
 
-  h1 { font-size: 3rem; margin-bottom: 10px; }
-  h2 { font-size: 1.5rem; color: #e0e1dd; margin-bottom: 10px; }
-  h3 { font-size: 1.2rem; color: #ffb703; margin-bottom: 15px; }
-  p { font-size: 0.95rem; line-height: 1.6; color: #e0e1dd; margin-bottom: 15px; }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle linear infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* Card Glassmorphism Glow */
+  .card {
+    position: relative;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 24px;
+    padding: 35px 25px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 183, 3, 0.15);
+    animation: fadeIn 0.8s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  h1 { font-size: 3.5rem; margin-bottom: 5px; animation: pulse 2s infinite; }
+  .title-sub { font-family: 'Sacramento', cursive; font-size: 2.2rem; color: #ffb703; margin-bottom: 5px; }
+  h2 { font-size: 1.4rem; color: #f1f1f1; letter-spacing: 1px; margin-bottom: 12px; }
+  p { font-size: 0.95rem; line-height: 1.7; color: #d1d5db; margin-bottom: 15px; }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
 
   .menu {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
+    gap: 14px;
+    margin-top: 25px;
   }
 
   button {
-    background: linear-gradient(45deg, #ffb703, #fb8500);
+    background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
     border: none;
-    color: #000;
-    font-weight: 600;
-    padding: 12px 20px;
-    border-radius: 25px;
+    color: #000000;
+    font-weight: 700;
+    padding: 14px 20px;
+    border-radius: 30px;
     cursor: pointer;
     font-size: 1rem;
-    transition: transform 0.2s;
+    box-shadow: 0 4px 15px rgba(251, 133, 0, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
-  button:active {
-    transform: scale(0.95);
+  button:hover, button:active {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(251, 133, 0, 0.6);
   }
 
   .btn-back {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    box-shadow: none;
     margin-top: 20px;
   }
 
   .page {
     display: none;
+    animation: fadeIn 0.5s ease-in-out;
   }
 
+  /* Gallery Styling */
   .gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin: 15px 0;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:active {
+    transform: scale(0.95);
   }
 
   .gallery img {
     width: 100%;
     height: 140px;
     object-fit: cover;
-    border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: block;
+  }
+
+  /* Modal Preview Foto */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .modal img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
   }
 </style>
 </head>
 
 <body>
 
+<div class="bg-stars" id="stars"></div>
+
 <div class="card">
 
   <div id="home">
     <h1>🌙</h1>
     <h2>HAPPY GIRLFRIEND DAY</h2>
-    <h3>Sayang 🤍</h3>
-    <p>Ada tiga bagian langit yang menyimpan sesuatu untukmu...</p>
+    <div class="title-sub">Sayang 🤍</div>
+    <p>Ada tiga bagian langit yang menyimpan sesuatu khusus untukmu...</p>
 
     <div class="menu">
-      <button onclick="showPage('star')">⭐ Bintang</button>
-      <button onclick="showPage('moon')">🌙 Bulan</button>
-      <button onclick="showPage('sky')">☁️ Langit</button>
+      <button onclick="openPage('star')">⭐ Bintang</button>
+      <button onclick="openPage('moon')">🌙 Bulan</button>
+      <button onclick="openPage('sky')">☁️ Langit</button>
     </div>
   </div>
 
   <div id="star" class="page">
     <h2>⭐ Untuk Kamu ⭐</h2>
-    <p>Aku bersyukur ketemu kamu.</p>
-    <p>Terima kasih sudah hadir.</p>
-    <p>Terima kasih sudah bertahan.</p>
-    <p>Aku senang bisa kenal kamu.</p>
-    <p>Jangan lupa makan ya.</p>
-    <p>Aku bangga sama kamu.</p>
+    <p>Aku bersyukur banget ketemu kamu.</p>
+    <p>Terima kasih sudah hadir & mau bertahan sejauh ini.</p>
+    <p>Aku selalu bangga sama kamu.</p>
+    <p>Jangan lupa makan & jaga kesehatan ya!</p>
     <p>Aku sayang kamu 🤍</p>
     <button class="btn-back" onclick="backHome()">⬅️ Kembali</button>
   </div>
 
   <div id="moon" class="page">
     <h2>🌙 Kenangan Kita</h2>
+    <p style="font-size: 0.8rem; opacity: 0.8;">(Klik foto untuk memperbesar)</p>
     <div class="gallery">
-      <img src="1.png" alt="Foto 1">
-      <img src="2.png" alt="Foto 2">
-      <img src="3.png" alt="Foto 3">
-      <img src="4.png" alt="Foto 4">
+      <div class="gallery-item" onclick="zoomImage('1.png')"><img src="1.png" alt="Foto 1"></div>
+      <div class="gallery-item" onclick="zoomImage('2.png')"><img src="2.png" alt="Foto 2"></div>
+      <div class="gallery-item" onclick="zoomImage('3.png')"><img src="3.png" alt="Foto 3"></div>
+      <div class="gallery-item" onclick="zoomImage('4.png')"><img src="4.png" alt="Foto 4"></div>
     </div>
     <p>Terima kasih sudah membuat banyak kenangan indah bersamaku.</p>
     <button class="btn-back" onclick="backHome()">⬅️ Kembali</button>
@@ -135,12 +214,10 @@
 
   <div id="sky" class="page">
     <h2>☁️ Surat Untukmu</h2>
-    <p>
+    <p style="text-align: justify; font-size: 0.9rem;">
       Happy Girlfriend Day, Sayang. 🤍<br><br>
       Kalau dipikir-pikir, lucu juga ya. Dari sekian banyak orang di dunia, ternyata kita bisa bertemu karena sebuah ketidaksengajaan.<br><br>
       Terima kasih sudah berbagi tawa, cerita, dan semua kenangan yang kita buat.<br><br>
-      Aku benar-benar bersyukur bisa mengenal kamu.<br><br>
-      Happy Girlfriend Day.<br><br>
       Kalau suatu hari nanti kamu bertanya apa hadiah terbaik yang pernah aku dapatkan... Jawabannya tetap sama.<br><br>
       Saat kamu memutuskan menjadi bagian dari hidupku. 🤍
     </p>
@@ -149,14 +226,38 @@
 
 </div>
 
+<div class="modal" id="imageModal" onclick="closeZoom()">
+  <img id="modalImg" src="" alt="Zoomed">
+</div>
+
 <script>
-  function showPage(pageId) {
+  // Buat Bintang-bintang otomatis
+  const starsContainer = document.getElementById('stars');
+  for (let i = 0; i < 60; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.width = `${Math.random() * 3 + 1}px`;
+    star.style.height = star.style.width;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+    starsContainer.appendChild(star);
+  }
+
+  function openPage(pageId) {
     document.getElementById('home').style.display = 'none';
     document.getElementById('star').style.display = 'none';
     document.getElementById('moon').style.display = 'none';
     document.getElementById('sky').style.display = 'none';
 
     document.getElementById(pageId).style.display = 'block';
+
+    // Efek Kembang Api/Confetti saat buka halaman
+    confetti({
+      particleCount: 50,
+      spread: 60,
+      origin: { y: 0.7 }
+    });
   }
 
   function backHome() {
@@ -165,6 +266,15 @@
     document.getElementById('sky').style.display = 'none';
 
     document.getElementById('home').style.display = 'block';
+  }
+
+  function zoomImage(src) {
+    document.getElementById('imageModal').style.display = 'flex';
+    document.getElementById('modalImg').src = src;
+  }
+
+  function closeZoom() {
+    document.getElementById('imageModal').style.display = 'none';
   }
 </script>
 
